@@ -17,8 +17,8 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.3.7'
-    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+    compile 'org.codehaus.groovy:groovy-all:2.4.4'
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4.4'
 }
 
 tasks.withType(Test) {
