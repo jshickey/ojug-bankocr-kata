@@ -1,0 +1,55 @@
+User Story 1
+read file that contains:
+     _  _     _  _  _  _  _
+   | _| _||_||_ |_   ||_||_|
+   ||_  _|  | _||_|  ||_| _|
+
+ and output:
+
+ 123456789
+
+ Thinking about a little bit, it would nice to group the first three characters
+ of each line together, the second three characters of each line together, etc...
+ and then we could map those sequences of nine pipes/hyphen/underscore characters
+ to a single decimal numerical character.
+
+ For the sake of time in this talk so that we can focus more the functional
+ coding in Groovy, I have already proved a simple class called OcrDigit
+ to do this mapping. It is a enum that provides helper methods for converting
+ from OCR to a single decimal character.
+
+ Let's start by seeing if we can split the each line into 9 3-char segments.
+ * write a test for a method call splitLine that will take one ocr line and return
+   and a list of 9 3-char strings. An imperative way to do this would be to loop
+   over each character in the string, initialize an empty list, put three chars
+   in the list, add the list to another list, create the next empty list, add three
+   more characters, etc...
+
+ * An account number is three lines, not one. So lets write a test convert three lines
+   so then we have something to work with for taking the first three characters
+   of each split line and group them together so we can call OcrDigit.ocrToDec().
+   We can use the Util class to get a file that we read in.
+
+ * Now we'd like to group the first string of each line together,
+   the second string of each line, etc... and concatentate them into one
+   9 character string that can be converted using ocrToDec(). transpose() is
+   a common 'zipper' function that you see functional languages.
+
+
+User Story 2 - Compute a Valid Checksum
+account number:  3  4  5  8  8  2  8  6  5
+position names:  d9 d8 d7 d6 d5 d4 d3 d2 d1
+
+checksum calculation:
+(d1+2*d2+3*d3 +..+9*d9) mod 11 = 0
+
+Imperative solution would be to loop over the collection string as a collection
+of chars, converting to numbers, initializing an accumulator variable to 0, etc...
+
+The multiplier is the reverse of the position in the list. So if had a list of
+of those positions e.g [9,8,7,6,5,4,3,2.1], and a list of digits in the account number,
+I can collect the product of each pair of numbers by position, sum them and
+then compute mod 11 on the sum.
+
+"It is better to have 100 functions operate on one data structure
+than 10 functions on 10 data structures." —Alan Perlis
